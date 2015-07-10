@@ -1,0 +1,96 @@
+﻿@model HaloShare.Areas.Admin.Models.HomeIndexViewModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="info-box">
+			<span class="info-box-icon bg-aqua">
+				<i class="fa fa-download"></i>
+			</span>
+			<div class="info-box-content">
+				<span class="info-box-text">Downloads</span>
+				<span class="info-box-number">@Model.DownloadCount</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="info-box">
+			<span class="info-box-icon bg-orange">
+				<i class="fa fa-upload"></i>
+			</span>
+			<div class="info-box-content">
+				<span class="info-box-text">Uploads</span>
+				<span class="info-box-number">@Model.UploadCount</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="info-box">
+			<span class="info-box-icon bg-green">
+				<i class="fa fa-users"></i>
+			</span>
+			<div class="info-box-content">
+				<span class="info-box-text">Accounts</span>
+				<span class="info-box-number">@Model.AccountCount</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="info-box">
+			<span class="info-box-icon bg-aqua">
+				<i class="fa fa-comments-o"></i>
+			</span>
+			<div class="info-box-content">
+				<span class="info-box-text">Reactions</span>
+				<span class="info-box-number">@Model.ReactionCount</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="box box-primary">
+			<div class="box-header">
+				<h3 class="box-title">Recent Forge Variants</h3>
+			</div>
+			<ul class="list-group">
+				@foreach (var variant in Model.ForgeVariants)
+				{
+					<li class="list-group-item">
+						<h3 class="list-group-item-heading">
+							@Html.ActionLink(variant.Title, "Details", "ForgeVariant", new { id = variant.Id })
+							<small>by @Html.ActionLink(variant.Author.UserName, "Details", "Profile", new { id = variant.AuthorId })</small>
+						</h3>
+						<span class="list-group-item-text">
+							<strong>@variant.GameMap.Name</strong>, @variant.ShortDescription
+						</span>
+					</li>
+				}
+			</ul>
+		</div>	
+	</div>
+	<div class="col-md-4">
+		<div class="box box-primary">
+			<div class="box-header">
+				<h3 class="box-title">Recent Game Variants</h3>
+			</div>
+			<ul class="list-group">
+				@foreach (var variant in Model.GameVariants)
+				{
+					<li class="list-group-item">
+						<h3 class="list-group-item-heading">
+							@Html.ActionLink(variant.Title, "Details", "GameVariant", new { id = variant.Id })
+							<small>by @Html.ActionLink(variant.Author.UserName, "Details", "Profile", new { id = variant.AuthorId })</small>
+						</h3>
+						<span class="list-group-item-text">
+							<strong>@variant.GameType.Name</strong>, @variant.ShortDescription
+						</span>
+					</li>
+				}
+			</ul>
+		</div>
+	</div>
+</div>

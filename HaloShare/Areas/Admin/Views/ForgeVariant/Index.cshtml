@@ -1,0 +1,88 @@
+﻿@model PagedList.PagedList<HaloShare.Models.GameMapVariant>
+@{
+	ViewBag.Title = "Forge Variants";
+}
+
+<div class="box box-primary">
+	<div class="box-header">
+		<h3 class="box-title">Forge Variants</h3>
+	</div>
+	<div class="box-body">
+		<div style="margin-bottom: 10px;">
+			@using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+			{
+				<div class="form-group">
+					<input type="search" name="q" value="@ViewBag.q" class="form-control" placeholder="Search..." />
+				</div>
+
+				<div class="form-group">
+					@Html.DropDownList("typeId", null, "All Maps", new { @class = "form-control", onchange = "this.form.submit()" })
+				</div>
+
+				<div class="form-group">
+					<select name="sort" class="form-control" onchange="this.form.submit()">
+						@SelectItem("Release", ViewBag.sort)
+						@SelectItem("Name", ViewBag.sort)
+						@SelectItem("Rating", ViewBag.sort)
+						@SelectItem("Downloads", ViewBag.sort)
+					</select>
+				</div>
+
+				<div class="form-group" onchange="this.form.submit()">
+					<select name="order" class="form-control" onchange="this.form.submit()">
+						@SelectItem("Ascending", ViewBag.order)
+						@SelectItem("Descending", ViewBag.order)
+					</select>
+				</div>
+
+				<div class="form-group">
+					<div class="btn-group btn-toggle">
+						<button type="submit" name="staffPick" value="" class="btn btn-default @(ViewBag.staffPick != true ? "active" : "")">All Variants</button>
+						<button type="submit" name="staffPick" value="True" class="btn btn-default @(ViewBag.staffPick == true ? "active" : "")">Staff Picks</button>
+					</div>
+				</div>
+
+				if (ViewBag.author != null)
+				{
+					<input type="hidden" value="@ViewBag.author" name="author" />
+				}
+			}
+		</div>		
+		<table id="variant" class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Author</th>
+					<th>Downloads</th>
+					<th>Map Type</th>
+					<th>Created On</th>
+					<th>Is Deleted</th>
+					<th>Is Staff</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var variant in Model)
+				{
+					<tr class="@(variant.IsDeleted ? "danger" : variant.IsStaffPick ? "warning" : "")">
+						<td>@Html.ActionLink(variant.Title, "Details", new { id = variant.Id })</td>
+						<td>@Html.ActionLink(variant.Author.UserName, "Details", "User", new { userName = variant.Author.UserName }, null)</td>
+						<td>@variant.File.DownloadCount</td>
+						<td>@variant.GameMap.Name</td>
+						<td>@variant.CreatedOn.ToShortDateString() @variant.CreatedOn.ToShortTimeString()</td>
+						<td>@(variant.IsDeleted ? "Yes" : "No")</td>
+						<td>@(variant.IsStaffPick ? "Yes" : "No")</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+		<div class="text-center">
+			@Html.PagedListPager(Model, page => Url.Action("Index", new { page, q = ViewBag.q, typeId = ViewBag.selectedMapId, staffPick = ViewBag.staffPick, sort = ViewBag.sort, order = ViewBag.order, author = ViewBag.author }))
+		</div>
+	</div>
+</div>
+
+@helper SelectItem(string name, string value)
+{
+	<option value="@name.ToLower()" @(value == name.ToLower() ? "selected" : "")>@name</option>
+}

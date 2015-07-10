@@ -1,0 +1,17 @@
+body {
+	margin-top: 73px;
+}
+
+.page-header {
+	margin: 0 0 10px;
+	border-bottom: 0;
+}
+
+.btn-lg, btn-group-lg > .btn {
+	padding: 13px 22px;
+}
+
+
+.navbar-brand {
+	padding: 13px;
+}

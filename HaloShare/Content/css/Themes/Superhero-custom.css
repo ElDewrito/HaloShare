@@ -1,0 +1,17 @@
+body {
+	margin-top: 50px;
+}
+
+.page-header {
+	padding-bottom: 7px;
+	margin: 0 0 10px;
+	border-bottom: 0;
+}
+
+.navbar-brand {
+	padding: 3px;
+}
+
+	.navbar-brand .icon-file-share {
+		font-size: 1.8em !important;
+	}

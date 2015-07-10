@@ -1,0 +1,60 @@
+﻿@model IEnumerable<HaloShare.Models.Reaction>
+@{
+	const int maxDepth = 3;
+	int depth = ViewBag.depth ?? 1;
+	int? parentId = ViewBag.parentId;
+}
+
+
+@foreach (var reaction in Model.Where(r => r.ParentReactionId == parentId && r.IsDeleted == false))
+{
+	<div class="media" itemprop="comment" itemscope itemtype="http://schema.org/Comment">
+		<span id="reactions-@reaction.Id" style="display: block; margin-top: -90px; padding-top: 90px;"></span>
+		<meta itemprop="dateCreated" content="@reaction.PostedOn.ToString("s", System.Globalization.CultureInfo.InvariantCulture)">
+		<div class="media-left hidden-xs">
+			<a class="thumbnail" href="@Url.Action("Index", "Profile", new { userName = reaction.Author.UserName })">
+				<img class=" media-object" style="max-width: 64px;" src="~/Content/Images/Avatar.jpg" alt="@reaction.Author.UserName's Avatar" />
+			</a>
+		</div>
+		<div class="media-body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title" style="display: inline;" itemscope itemtype="http://data-vocabulary.org/Person" itemprop="author">
+						<a href="@Url.Action("Index", "Profile", new { userName = reaction.Author.UserName })">
+							@reaction.Author.UserName
+						</a>
+
+						@if (reaction.IsDeleted)
+						{
+							<small>Deleted</small>
+						}
+					</h4>
+					<span class="pull-right text-muted" title="@reaction.PostedOn">@reaction.PostedOn</span>
+				</div>
+				<div class="panel-body">
+					<p itemprop="text">@Html.Raw(reaction.Comment.TransformMarkdown())</p>
+					<div class="btn-group btn-group-xs pull-right">
+						@*<a href="#" class="btn btn-primary"><i class="fa fa-xs fa-comment"></i> Reply</a>
+						<a href="#" class="btn btn-default" title="Report"><i class="fa fa-xs fa-flag"></i></a>
+						
+						@if (User.IsInRole("Mod-DeleteReaction") || reaction.Author.UserName == User.Identity.Name)
+						{ 
+							<a href="#" class="btn btn-default" title="Delete"><i class="fa fa-xs fa-trash-o"></i></a>
+						}*@
+					</div>
+				</div>
+				@if (depth < maxDepth && Model.Any(r => r.ParentReactionId == reaction.Id))
+				{
+					<div class="panel-body">
+						@Html.Partial("_Reactions", Model, new ViewDataDictionary() { { "parentId", reaction.Id }, { "depth", depth + 1 } })
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+
+	if (depth >= maxDepth && Model.Any(r => r.ParentReactionId == reaction.Id))
+	{
+		@Html.Partial("_Reactions", Model, new ViewDataDictionary() { { "parentId", reaction.Id }, { "depth", depth + 1 } });
+	}
+}

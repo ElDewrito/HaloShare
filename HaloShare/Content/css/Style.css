@@ -1,0 +1,78 @@
+﻿body {
+  margin-bottom: 10px;
+}
+.star-rating {
+  line-height: 32px;
+  font-size: 1.25em;
+  cursor: pointer;
+}
+.dl-vertical dd {
+  margin-left: 15px;
+}
+a:target {
+  display: block;
+  position: relative;
+  top: -100px;
+  visibility: hidden;
+}
+.navbar-brand .icon-file-share {
+  height: 100%;
+  display: inline-block;
+  font-size: 2em;
+  vertical-align: middle;
+}
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+  .row-flex,
+  .row-flex > div[class*='col-'] {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+  .row-flex-wrap {
+    -ms-align-content: flex-start;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+    -ms-flex: 0;
+    flex: 0;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  .row-flex > div[class*='col-'],
+  .container-flex > div[class*='col-'] {
+    margin: -2px;
+    /* hack adjust for wrapping */
+  }
+  .flex-col {
+    display: flex;
+    display: -webkit-flex;
+    -ms-flex: 1 100%;
+    flex: 1 100%;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+  }
+  .flex-grow {
+    display: flex;
+    -ms-flex: 2;
+    flex: 2;
+  }
+}
+.gallery {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.gallery a {
+  display: block;
+  margin: 3px;
+}
+.gallery img {
+  max-width: 120px;
+}
+.gallery .thumbnail {
+  margin-bottom: 0;
+}
+/*# sourceMappingURL=Style.css.map */

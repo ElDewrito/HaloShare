@@ -1,0 +1,31 @@
+﻿@{
+	var lightThemes = new[] {
+		"Cerulean", "Cosmo", "Flatly", "Journal", "Lumen", "Paper", 
+		"Readable", "Sandstone", "Simplex", "Spacelab", "United", "Yeti"
+	};
+	var darkThemes = new[] {
+		"Cyborg", "Darkly", "Slate", "Superhero"
+	};
+	
+	var selectedTheme = Request.Cookies["Style"] != null ? Request.Cookies["Style"].Value : "Slate";
+}
+
+<select id="theme-selector" class="form-control pull-right" style="width: auto;">
+	<optgroup label="Light">
+		@foreach (var theme in lightThemes)
+		{
+			<option value="@theme" @(theme == selectedTheme ? "selected" : "") onclick="SetCookie('@theme')">
+				@theme
+			</option>
+		}
+	</optgroup>
+	<optgroup label="Dark">
+		@foreach (var theme in darkThemes)
+		{
+			<option value="@theme" @(theme == selectedTheme ? "selected" : "") onclick="SetCookie('@theme')">
+				@theme
+			</option>
+		}
+	</optgroup>
+</select>
+

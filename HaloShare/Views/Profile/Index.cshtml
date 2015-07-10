@@ -1,0 +1,94 @@
+﻿@model HaloShare.ViewModels.Profile
+@{
+	ViewBag.Title = string.Format("{0}'s Profile", Model.UserName);
+}
+<div itemscope itemtype="http://schema.org/Person">
+	<h1 class="page-header" itemprop="name">@Model.UserName</h1>
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="thumbnail">
+				<img itemprop="image" src="~/Content/Images/Avatar.jpg" alt="@Model.UserName's Avatar Picture" />
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h2 style="margin-top: 0;">
+				<a href="@Url.Action("Index", "Forge", new { author = Model.UserName })">Maps</a>
+			</h2>
+			<div class="row row-flex row-flex-wrap">
+				@foreach (var map in Model.Maps)
+				{
+					<div class="col-sm-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2 class="panel-title">
+									<a href="@Url.Action("Details", "Forge", new { slug = map.Slug })">@map.Title</a>
+								</h2>
+							</div>
+
+							<div class="row" style="padding: 5px;">
+								<div class="col-xs-4">
+									<a class="thumbnail" href="@Url.Action("Details", "Forge", new { slug = map.Slug })" style="margin: 0;">
+										<img src="~/Content/Images/Maps/@(map.GameMap.InternalName).jpg" style="width: 100%;" />
+									</a>
+								</div>
+								<div class="col-xs-8">
+									<div class="row">
+										<div class="col-xs-5" style="font-weight: bold;">Author</div>
+										<div class="col-xs-7">
+											<a href="@Url.Action("Index", "Profile", new { userName = map.Author.UserName })">@map.Author.UserName</a>
+										</div>
+										<div class="col-xs-5" style="font-weight: bold;">Release</div>
+										<div class="col-xs-7">@map.CreatedOn.ToString("MMM dd, yyy")</div>
+										<div class="col-xs-5" style="font-weight: bold;">Downloads</div>
+										<div class="col-xs-7">@map.File.DownloadCount</div>
+									</div>
+								</div>
+							</div>
+							<div style="font-style: italic; margin: 2px 10px 5px 10px;">@map.ShortDescription</div>
+						</div>
+					</div>
+				}
+			</div>
+
+			<h2 style="margin-top: 0;">
+				<a href="@Url.Action("Index", "GameType", new { author = Model.UserName })">Game Types</a>
+			</h2>
+			<div class="row row-flex row-flex-wrap">
+				@foreach (var type in Model.Types)
+				{
+					<div class="col-sm-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2 class="panel-title">
+									<a href="@Url.Action("Details", "GameType", new { slug = type.Slug })">@type.Title</a>
+								</h2>
+							</div>
+
+							<div class="row" style="padding: 5px;">
+								<div class="col-xs-4">
+									<a class="thumbnail" href="@Url.Action("Details", "GameType", new { slug = type.Slug })" style="margin: 0;">
+										<img src="~/Content/Images/Gametypes/@(type.GameType.InternalName).png" style="width: 100%;" />
+									</a>
+								</div>
+								<div class="col-xs-8">
+									<div class="row">
+										<div class="col-xs-5" style="font-weight: bold;">Author</div>
+										<div class="col-xs-7">
+											<a href="@Url.Action("Index", "Profile", new { userName = type.Author.UserName })">@type.Author.UserName</a>
+										</div>
+										<div class="col-xs-5" style="font-weight: bold;">Release</div>
+										<div class="col-xs-7" title="@type.CreatedOn">@type.CreatedOn.ToString("MMM dd, yyy")</div>
+										<div class="col-xs-5" style="font-weight: bold;">Downloads</div>
+										<div class="col-xs-7">@type.File.DownloadCount</div>
+									</div>
+								</div>
+							</div>
+							<div style="font-style: italic; margin: 2px 10px 5px 10px;">@type.ShortDescription</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>

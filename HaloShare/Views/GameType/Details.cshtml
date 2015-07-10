@@ -1,0 +1,134 @@
+﻿@model HaloShare.Models.GameTypeVariant
+@{
+	ViewBag.Title = String.Format("{0} - {1} Variant", Model.Title, Model.GameType.Name);
+	ViewBag.Canonical = Url.Action("Details", new { slug = Model.Slug });
+	ViewBag.Description = string.Format("{0} is a {1} variant by {2}. {3}", Model.Title, Model.GameType.Name, Model.Author.UserName, Model.ShortDescription);
+}
+
+<div itemscope itemtype="http://schema.org/CreativeWork">
+	<meta itemprop="dateCreated" content="@Model.CreatedOn.ToString("yyyy-MM-dd")" />
+	<meta itemprop="interactionCount" content="UserDownloads:@Model.File.Downloads.Count()" />
+	<meta itemprop="interactionCount" content="UserComments:@Model.Reactions.Count()" />
+
+	<h1 class="page-header">
+		@if (Model.IsStaffPick)
+		{
+			<i class="fa fa-certificate" title="Staff Pick"></i>
+		}<span itemprop="name">@Model.Title</span>
+		<small>by <span itemprop="author">@Html.ActionLink(Model.Author.UserName, "Index", "Profile", new { userName = Model.Author.UserName }, null)</span></small>
+	</h1>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-sm-12 col-md-3 col-lg-2 text-center">
+					<img itemprop="image" src="~/Content/Images/Gametypes/@(Model.GameType.InternalName).png" style="max-width: 100%;" />
+				</div>
+				<div class="col-xs-12 col-sm-9 col-lg-10">
+					<div class="row">
+						<div class="col-sm-8 col-md-9">
+							<blockquote itemprop="description">@Model.ShortDescription</blockquote>
+						</div>
+						<div class="col-sm-44 col-md-3" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+							<div class="pull-right" style="text-align: right;">
+								<div id="star-rating" class="star-rating" style="color: goldenrod; text-align: center; height: 100%;">
+									<span class="fa fa-lg fa-star-o" data-rating="1"></span>
+									<span class="fa fa-lg fa-star-o" data-rating="2"></span>
+									<span class="fa fa-lg fa-star-o" data-rating="3"></span>
+									<span class="fa fa-lg fa-star-o" data-rating="4"></span>
+									<span class="fa fa-lg fa-star-o" data-rating="5"></span>
+								</div>
+								<meta id="rating-value" itemprop="ratingValue" content="@Math.Round(Model.Rating)" />
+								<div><span id="rating-count" itemprop="reviewCount">@Model.RatingCount</span> Vote(s) cast</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6 col-sm-4">
+							<dl class="dl-vertical">
+								<dt>Released on:</dt>
+								<dd title="@Model.CreatedOn">@Model.CreatedOn.ToString("MMM dd, yyy")</dd>
+								<dt>Downloads:</dt>
+								<dd>@String.Format("{0:n0}", Model.File.Downloads.Count())</dd>
+							</dl>
+							<meta itemprop="interactionCount" content="UserDownloads:@Model.File.DownloadCount" />
+						</div>
+						<div class="col-xs-6 col-sm-4">
+							<dl class="dl-vertical">
+								<dt>Game Type:</dt>
+								<dd>@Model.GameType.Name</dd>
+								<dt>File Size:</dt>
+								<dd title="Bandwidth Used: @((Model.File.FileSize * Model.File.DownloadCount).BytesToString())">@Model.File.FileSize.BytesToString()</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<a id="download-link" data-blam="blamfile://haloshare.net?type=forge&id=@Model.Id" href="@Url.Action("GameType", "Download", new { id = Model.Id, token = ViewBag.Token })" class="btn btn-primary btn-lg">
+				<i class="fa fa-lg fa-cloud-download"></i> <span class="hidden-xs hidden-sm">Download</span>
+			</a>
+
+			<a href="#reactions" class="btn btn-default"><i class="fa fa-lg fa-comments"></i> Reactions</a>
+
+			<div class="pull-right btn-group btn-group-xs">
+				@if (Model.AuthorId == User.Identity.GetUserId<int>() || User.IsInRole("Mod"))
+				{
+					<a class="btn btn-default" href="@Url.Action("Edit", new { id = Model.Id })">
+						<i class="fa fa-pencil"></i> Edit
+					</a>
+				}
+				<a href="#" onclick="Report('@Url.Action()'); return false;" class="btn btn-default btn-xs" title="Report"><i class="fa fa-flag"></i></a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<aside class="col-md-4 col-md-push-8" style="text-align: center;" itemscope itemtype="http://schema.org/WPAdBlock">
+			@Html.Partial("~/Views/Shared/Ads/_Details.cshtml")
+		</aside>
+		<div class="col-md-8 col-md-pull-4">
+			@if (!string.IsNullOrEmpty(Model.Description))
+			{
+				<div class="panel panel-default">
+					<div class="panel-body" itemprop="text">
+						@Html.Raw(Model.DescriptionHTML)
+					</div>
+				</div>
+				<aside style="text-align: center;" itemscope itemtype="http://schema.org/WPAdBlock">
+					@Html.Partial("~/Views/Shared/Ads/_Long.cshtml")
+				</aside>
+			}
+			<section>
+				<h2>Reactions (<span itemprop="commentCount">@Model.Reactions.Count()</span>)</h2>
+
+				<div id="reaction">
+					<form method="post" action="@Url.Action("Reply")" id="reply-box">
+						<input name="ParentId" id="reply-parent" type="hidden" />
+						<input name="Id" type="hidden" value="@Model.Id" />
+						<div class="form-group">
+							<textarea required name="Comment" class="form-control" style="height: 80px;"></textarea>
+						</div>
+						<div class="form-group text-right">
+							<input type="submit" class="btn btn-primary" value="Reply" />
+						</div>
+					</form>
+				</div>
+
+				@Html.Partial("~/Views/Shared/_Reactions.cshtml", Model.Reactions)
+			</section>
+		</div>
+	</div>
+</div>
+
+@Html.Partial("~/Views/Shared/_DwnlNag.cshtml")
+
+@section scripts {
+
+	<script>
+		$(function () {
+			var rating = new Rating("#star-rating", $("#rating-value").attr("content"), "/gametypes/rate", @Model.Id);
+		});
+	</script>
+}

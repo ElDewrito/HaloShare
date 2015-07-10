@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HaloShare", "HaloShare\HaloShare.csproj", "{33E8B9F6-875E-4F9C-A67F-D6833CCBC301}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HaloShare.VariantLib", "HaloShare.VariantLib\HaloShare.VariantLib.csproj", "{35138DA1-637C-4B47-9098-7E8A8D3DD11B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A1C2145E-C218-48F3-8314-6484A0862DA4}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HaloShare.BBCode", "HaloShare.BBCode\HaloShare.BBCode.csproj", "{D7CBF955-7276-4051-B087-C6DE411F5169}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HaloShare.Core", "HaloShare.Core\HaloShare.Core.csproj", "{F39C956D-3E68-4A4A-8A74-9C490BDBA219}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33E8B9F6-875E-4F9C-A67F-D6833CCBC301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E8B9F6-875E-4F9C-A67F-D6833CCBC301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E8B9F6-875E-4F9C-A67F-D6833CCBC301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E8B9F6-875E-4F9C-A67F-D6833CCBC301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35138DA1-637C-4B47-9098-7E8A8D3DD11B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35138DA1-637C-4B47-9098-7E8A8D3DD11B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35138DA1-637C-4B47-9098-7E8A8D3DD11B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35138DA1-637C-4B47-9098-7E8A8D3DD11B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7CBF955-7276-4051-B087-C6DE411F5169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7CBF955-7276-4051-B087-C6DE411F5169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7CBF955-7276-4051-B087-C6DE411F5169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7CBF955-7276-4051-B087-C6DE411F5169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F39C956D-3E68-4A4A-8A74-9C490BDBA219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F39C956D-3E68-4A4A-8A74-9C490BDBA219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F39C956D-3E68-4A4A-8A74-9C490BDBA219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F39C956D-3E68-4A4A-8A74-9C490BDBA219}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{33E8B9F6-875E-4F9C-A67F-D6833CCBC301}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HaloShare</RootNamespace>
+    <AssemblyName>HaloShare</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.4</TypeScriptToolsVersion>
+    <NuGetPackageImportStamp>e0e61168</NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/d51f9e1a-8c69-4676-8312-70b27f7551d4/resourcegroups/Default-Web-eastus/providers/microsoft.insights/components/haloshare</ApplicationInsightsResourceId>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mandrill">
+      <HintPath>..\packages\Mandrill.1.3.1.0\lib\net40\Mandrill.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\lib\net40\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.PerfCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerformanceCollector.0.14.0-build20632\lib\net40\Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.RuntimeTelemetry.0.14.0-build20632\lib\net45\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.0.14.0-build20632\lib\net45\Microsoft.ApplicationInsights.Extensibility.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Diagnostics.Instrumentation.Extensions.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.0.14.0-build08008\lib\net40\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\lib\net45\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Typesafe.Mailgun">
+      <HintPath>..\packages\mnailgun.0.7.0\lib\4.0\Typesafe.Mailgun.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ForgeVariantController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GameVariantController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Models\HomeIndexViewModel.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DownloadController.cs" />
+    <Compile Include="Controllers\ForgeController.cs" />
+    <Compile Include="Controllers\GameTypeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507100951573_Changes.cs" />
+    <Compile Include="Migrations\201507100951573_Changes.Designer.cs">
+      <DependentUpon>201507100951573_Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileDownload.cs" />
+    <Compile Include="Models\GameMap.cs" />
+    <Compile Include="Models\GameMapVariant.cs" />
+    <Compile Include="Models\GameMapVariantImage.cs" />
+    <Compile Include="Models\GameType.cs" />
+    <Compile Include="Models\GameTypeVariant.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Reaction.cs" />
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\ApplicationSignInManager.cs" />
+    <Compile Include="Security\ApplicationUserManager.cs" />
+    <Compile Include="Security\ApplicationUserStore.cs" />
+    <Compile Include="Security\ForumApi.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\GameTypeService.cs" />
+    <Compile Include="Services\GameMapService.cs" />
+    <Compile Include="Services\ReactionService.cs" />
+    <Compile Include="Services\ReportService.cs" />
+    <Compile Include="Services\TokenService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\Profile.cs" />
+    <Compile Include="ViewModels\RateResponse.cs" />
+    <Compile Include="ViewModels\ReplyRequest.cs" />
+    <Compile Include="ViewModels\UploadIndex.cs" />
+    <Compile Include="ViewModels\UploadViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\admin\bootstrap.css" />
+    <Content Include="Content\css\admin\AdminLTE.css" />
+    <Content Include="Content\css\admin\AdminLTE.min.css" />
+    <Content Include="Content\css\admin\skins\skin-black.css" />
+    <Content Include="Content\css\admin\skins\skin-black.min.css" />
+    <Content Include="Content\css\admin\skins\skin-blue.css" />
+    <Content Include="Content\css\admin\skins\skin-blue.min.css" />
+    <Content Include="Content\css\admin\skins\skin-green.css" />
+    <Content Include="Content\css\admin\skins\skin-green.min.css" />
+    <Content Include="Content\css\admin\skins\skin-purple.css" />
+    <Content Include="Content\css\admin\skins\skin-purple.min.css" />
+    <Content Include="Content\css\admin\skins\skin-red.css" />
+    <Content Include="Content\css\admin\skins\skin-red.min.css" />
+    <Content Include="Content\css\admin\skins\skin-yellow.css" />
+    <Content Include="Content\css\admin\skins\skin-yellow.min.css" />
+    <Content Include="Content\css\admin\skins\_all-skins.css" />
+    <Content Include="Content\css\admin\skins\_all-skins.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\icomoon.css" />
+    <Content Include="Content\css\lightbox.css" />
+    <Content Include="Content\css\Themes\Bootstrap.css" />
+    <Content Include="Content\css\Themes\Bootstrap-custom.css" />
+    <Content Include="Content\css\Themes\Cerulean-custom.css" />
+    <Content Include="Content\css\Themes\Cerulean.css" />
+    <Content Include="Content\css\Themes\Cosmo-custom.css" />
+    <Content Include="Content\css\Themes\Cosmo.css" />
+    <Content Include="Content\css\Themes\Cyborg-custom.css" />
+    <Content Include="Content\css\Themes\Cyborg.css" />
+    <Content Include="Content\css\Themes\Darkly-custom.css" />
+    <Content Include="Content\css\Themes\Darkly.css" />
+    <Content Include="Content\css\Themes\Flatly-custom.css" />
+    <Content Include="Content\css\Themes\Flatly.css" />
+    <Content Include="Content\css\Themes\Journal-custom.css" />
+    <Content Include="Content\css\Themes\Journal.css" />
+    <Content Include="Content\css\Themes\Lumen-custom.css" />
+    <Content Include="Content\css\Themes\Lumen.css" />
+    <Content Include="Content\css\Themes\Paper-custom.css" />
+    <Content Include="Content\css\Themes\Paper.css" />
+    <Content Include="Content\css\Themes\Readable-custom.css" />
+    <Content Include="Content\css\Themes\Readable.css" />
+    <Content Include="Content\css\Themes\Sandstone-custom.css" />
+    <Content Include="Content\css\Themes\Sandstone.css" />
+    <Content Include="Content\css\Themes\Simplex-custom.css" />
+    <Content Include="Content\css\Themes\Simplex.css" />
+    <Content Include="Content\css\Themes\Slate-custom.css" />
+    <Content Include="Content\css\Themes\Slate.css" />
+    <Content Include="Content\css\Themes\Spacelab-custom.css" />
+    <Content Include="Content\css\Themes\Spacelab.css" />
+    <Content Include="Content\css\Themes\Superhero-custom.css" />
+    <Content Include="Content\css\Themes\Superhero.css" />
+    <Content Include="Content\css\Themes\United-custom.css" />
+    <Content Include="Content\css\Themes\United.css" />
+    <Content Include="Content\css\Themes\Yeti-custom.css" />
+    <Content Include="Content\css\Themes\Yeti.css" />
+    <Content Include="Content\css\Upload.css">
+      <DependentUpon>Upload.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Upload.min.css">
+      <DependentUpon>Upload.css</DependentUpon>
+    </Content>
+    <Content Include="Content\fonts\icomoon.svg" />
+    <Content Include="Content\images\admin\avatar.png" />
+    <Content Include="Content\images\admin\avatar04.png" />
+    <Content Include="Content\images\admin\avatar2.png" />
+    <Content Include="Content\images\admin\avatar3.png" />
+    <Content Include="Content\images\admin\avatar5.png" />
+    <Content Include="Content\images\admin\boxed-bg.jpg" />
+    <Content Include="Content\images\admin\boxed-bg.png" />
+    <Content Include="Content\images\admin\credit\american-express.png" />
+    <Content Include="Content\images\admin\credit\cirrus.png" />
+    <Content Include="Content\images\admin\credit\mastercard.png" />
+    <Content Include="Content\images\admin\credit\mestro.png" />
+    <Content Include="Content\images\admin\credit\paypal.png" />
+    <Content Include="Content\images\admin\credit\paypal2.png" />
+    <Content Include="Content\images\admin\credit\visa.png" />
+    <Content Include="Content\images\admin\default-50x50.gif" />
+    <Content Include="Content\images\admin\icons.png" />
+    <Content Include="Content\images\admin\photo1.png" />
+    <Content Include="Content\images\admin\photo2.png" />
+    <Content Include="Content\images\admin\user1-128x128.jpg" />
+    <Content Include="Content\images\admin\user2-160x160.jpg" />
+    <Content Include="Content\images\admin\user3-128x128.jpg" />
+    <Content Include="Content\images\admin\user4-128x128.jpg" />
+    <Content Include="Content\images\admin\user5-128x128.jpg" />
+    <Content Include="Content\images\admin\user6-128x128.jpg" />
+    <Content Include="Content\images\admin\user7-128x128.jpg" />
+    <Content Include="Content\images\admin\user8-128x128.jpg" />
+    <Content Include="Content\images\Avatar.jpg" />
+    <Content Include="Content\images\Gametypes\assault.gif" />
+    <Content Include="Content\images\Gametypes\assault.png" />
+    <Content Include="Content\images\Gametypes\ctf.gif" />
+    <Content Include="Content\images\Gametypes\ctf.png" />
+    <Content Include="Content\images\Gametypes\fileshare.png" />
+    <Content Include="Content\images\Gametypes\film.png" />
+    <Content Include="Content\images\Gametypes\forge.png" />
+    <Content Include="Content\images\Gametypes\infection.gif" />
+    <Content Include="Content\images\Gametypes\infection.png" />
+    <Content Include="Content\images\Gametypes\juggernaut.gif" />
+    <Content Include="Content\images\Gametypes\juggernaut.png" />
+    <Content Include="Content\images\Gametypes\koth.gif" />
+    <Content Include="Content\images\Gametypes\koth.png" />
+    <Content Include="Content\images\Gametypes\oddball.gif" />
+    <Content Include="Content\images\Gametypes\oddball.png" />
+    <Content Include="Content\images\Gametypes\slayer.gif" />
+    <Content Include="Content\images\Gametypes\slayer.png" />
+    <Content Include="Content\images\Gametypes\territories.gif" />
+    <Content Include="Content\images\Gametypes\territories.png" />
+    <Content Include="Content\images\Gametypes\thumbs\assault.png" />
+    <Content Include="Content\images\Gametypes\thumbs\ctf.png" />
+    <Content Include="Content\images\Gametypes\thumbs\fileshare.png" />
+    <Content Include="Content\images\Gametypes\thumbs\film.png" />
+    <Content Include="Content\images\Gametypes\thumbs\forge.png" />
+    <Content Include="Content\images\Gametypes\thumbs\infection.png" />
+    <Content Include="Content\images\Gametypes\thumbs\juggernaut.png" />
+    <Content Include="Content\images\Gametypes\thumbs\koth.png" />
+    <Content Include="Content\images\Gametypes\thumbs\oddball.png" />
+    <Content Include="Content\images\Gametypes\thumbs\slayer.png" />
+    <Content Include="Content\images\Gametypes\thumbs\territories.png" />
+    <Content Include="Content\images\Gametypes\thumbs\vip.png" />
+    <Content Include="Content\images\Gametypes\vip.gif" />
+    <Content Include="Content\images\Gametypes\vip.png" />
+    <Content Include="Content\images\lightbox\close.png" />
+    <Content Include="Content\images\lightbox\loading.gif" />
+    <Content Include="Content\images\lightbox\next.png" />
+    <Content Include="Content\images\lightbox\prev.png" />
+    <Content Include="Content\images\logo\black.png" />
+    <Content Include="Content\images\logo\blue.png" />
+    <Content Include="Content\images\logo\white.png" />
+    <Content Include="Content\images\Maps\guardian.jpg" />
+    <Content Include="Content\images\Maps\riverworld.jpg" />
+    <Content Include="Content\css\Style.css">
+      <DependentUpon>Style.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Style.min.css">
+      <DependentUpon>Style.css</DependentUpon>
+    </Content>
+    <Content Include="Content\images\Maps\s3d_avalanche.jpg" />
+    <Content Include="Content\images\Maps\s3d_edge.jpg" />
+    <Content Include="Content\images\Maps\s3d_reactor.jpg" />
+    <Content Include="Content\images\Maps\s3d_turf.jpg" />
+    <Content Include="Content\images\Maps\thumbs\guardian.jpg" />
+    <Content Include="Content\images\Maps\thumbs\riverworld.jpg" />
+    <Content Include="Content\images\Maps\thumbs\s3d_avalanche.jpg" />
+    <Content Include="Content\images\Maps\thumbs\s3d_edge.jpg" />
+    <Content Include="Content\images\Maps\thumbs\s3d_reactor.jpg" />
+    <Content Include="Content\images\Maps\thumbs\s3d_turf.jpg" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\css\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Scripts\admin.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\css\Style.less" />
+    <Content Include="Content\css\Style.css.map">
+      <DependentUpon>Style.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Upload.less" />
+    <Content Include="Content\css\Upload.css.map">
+      <DependentUpon>Upload.css</DependentUpon>
+    </Content>
+    <Content Include="Content\fonts\icomoon.eot" />
+    <Content Include="Content\fonts\icomoon.ttf" />
+    <Content Include="Content\fonts\icomoon.woff" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ForgeVariant\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ForgeVariant\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ForgeVariant\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\GameVariant\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\GameVariant\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\GameVariant\Index.cshtml" />
+    <None Include="config.json" />
+    <None Include="config.json-TEMPLATE" />
+    <None Include="Properties\PublishProfiles\haloshare %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\haloshare.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.slimscroll.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lightbox.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Forge\Details.cshtml" />
+    <Content Include="Views\Shared\_ThemeSelector.cshtml" />
+    <Content Include="Views\Shared\_Reactions.cshtml" />
+    <Content Include="Views\GameType\Details.cshtml" />
+    <Content Include="Views\Forge\Index.cshtml" />
+    <Content Include="Views\GameType\Index.cshtml" />
+    <Content Include="Views\Forge\Edit.cshtml" />
+    <Content Include="Views\Forge\Delete.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Upload\Index.cshtml" />
+    <Content Include="Views\Shared\_ModelState.cshtml" />
+    <Content Include="Views\Shared\Ads\_Details.cshtml" />
+    <Content Include="Views\Shared\Ads\_Long.cshtml" />
+    <Content Include="Views\GameType\Edit.cshtml" />
+    <Content Include="Views\GameType\Delete.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Shared\_DwnlNag.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\files\Forge\" />
+    <Folder Include="Content\files\GameType\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="robots.txt" />
+    <TypeScriptCompile Include="Scripts\Editor.ts" />
+    <TypeScriptCompile Include="Scripts\Scripts.ts" />
+    <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery.cookie\jquery.cookie.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
+    <TypeScriptCompile Include="Scripts\Upload.ts" />
+    <TypeScriptCompile Include="Scripts\BaseIO.ts" />
+    <TypeScriptCompile Include="Scripts\FileIO.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HaloShare.BBCode\HaloShare.BBCode.csproj">
+      <Project>{d7cbf955-7276-4051-b087-c6de411f5169}</Project>
+      <Name>HaloShare.BBCode</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HaloShare.Core\HaloShare.Core.csproj">
+      <Project>{f39c956d-3e68-4a4a-8a74-9c490bdba219}</Project>
+      <Name>HaloShare.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HaloShare.VariantLib\HaloShare.VariantLib.csproj">
+      <Project>{35138da1-637c-4b47-9098-7e8a8d3dd11b}</Project>
+      <Name>HaloShare.VariantLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201507100951573_Changes.resx">
+      <DependentUpon>201507100951573_Changes.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5676</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:5676/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.Agent.Intercept.0.14.0-build08008\build\Microsoft.ApplicationInsights.Agent.Intercept.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.Agent.Intercept.0.14.0-build08008\build\Microsoft.ApplicationInsights.Agent.Intercept.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\tools\net40\Microsoft.ApplicationInsights.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\tools\net40\Microsoft.ApplicationInsights.targets')" />
+  <Target Name="EnsureApplicationInsightsImported" BeforeTargets="BeforeBuild" Condition="'$(ApplicationInsightsImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\tools\net40\Microsoft.ApplicationInsights.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
+    <Error Condition="Exists('..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\tools\net40\Microsoft.ApplicationInsights.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
+  </Target>
+  <Import Project="..\packages\Microsoft.ApplicationInsights.Agent.Intercept.0.14.0-build08008\build\Microsoft.ApplicationInsights.Agent.Intercept.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.Agent.Intercept.0.14.0-build08008\build\Microsoft.ApplicationInsights.Agent.Intercept.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

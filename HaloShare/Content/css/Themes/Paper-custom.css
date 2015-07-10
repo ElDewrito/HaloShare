@@ -1,0 +1,16 @@
+body {
+	margin-top: 74px;
+}
+
+h1 {
+	font-size: 39px;
+}
+
+.page-header {
+	margin: 0 0 10px;
+	border-bottom: 0;
+}
+
+.navbar-brand {
+	padding: 8px;
+}

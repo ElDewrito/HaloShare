@@ -1,0 +1,107 @@
+﻿@{ 
+    if (string.IsNullOrEmpty(ViewBag.Canonical))
+    {
+        ViewBag.Canonical = Request.Url.AbsolutePath;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | HaloShare</title>
+
+	@{ var theme = (Request.Cookies["Style"] != null ? Request.Cookies["Style"].Value : "Slate"); }
+	<link rel="stylesheet" href="~/Content/Css/Themes/@(theme).css" />
+	<link rel="stylesheet" href="~/Content/Css/Themes/@(theme)-custom.css" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+	<meta name="description" content="@ViewBag.Description" />
+	<link rel="canonical" href="https://haloshare.net@(ViewBag.Canonical)" />
+</head>
+<body>
+	<script type="text/javascript">
+		var appInsights = window.appInsights || function (config) {
+			function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+		}({
+			instrumentationKey: "ea6aed43-986f-471f-84eb-2ed8c3ee12ee"
+		});
+
+		window.appInsights = appInsights;
+		appInsights.trackPageView();
+	</script>
+	<script>
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-16906240-9', 'auto');
+		ga('send', 'pageview');
+
+	</script>
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">
+					<i class="icon-file-share" style="font-size: 2em;"></i>
+					<span>HaloShare <sup>Beta</sup></span>
+				</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+
+					<li>@Html.ActionLink("Forge Variants", "Index", "Forge")</li>
+					<li>@Html.ActionLink("Game Variants", "Index", "GameType")</li>
+
+					@if (User.IsInRole("Mod"))
+					{
+						<li role="presentation" class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+								Admin <span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								<li>@Html.ActionLink("Reports", "Index", "Report")</li>
+							</ul>
+						</li>
+					}
+				</ul>
+
+
+				@Html.Partial("_LoginPartial")
+			</div>
+		</div>
+	</div>
+	<div class="container body-content">
+		@if (TempData["AlertType"] != null)
+		{
+			<div role="alert" class="alert alert-dismissable alert-@TempData["AlertType"]" style="margin: 10px 0 5px 0;">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				@Html.Raw(TempData["AlertMessage"])
+			</div>
+		}
+
+		@RenderBody()
+		<hr />
+		<footer>
+			<span>&copy; @DateTime.Now.Year - HaloShare by Wombarly &bull; @Html.ActionLink("Terms of Service", "Terms", "Home", null, new { @class = "text-muted" })</span>
+
+			@Html.Partial("_ThemeSelector")
+		</footer>
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+</body>
+</html>

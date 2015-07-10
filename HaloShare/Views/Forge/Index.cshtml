@@ -1,0 +1,124 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<HaloShare.Models.GameMapVariant>
+@{
+	ViewBag.Title = "Forge Variants";
+	if(ViewBag.author != null)
+	{
+		ViewBag.Title += " by " + ViewBag.author;
+	}
+}
+
+<h1 class="page-header">
+	Forge Variants
+	@if (ViewBag.author != null)
+	{
+		<small>by @Html.ActionLink((string)ViewBag.Author, "Index", "Profile", new { userName = ViewBag.author })</small>
+	}
+</h1>
+
+<div class="well">
+	@using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+	{
+		<div class="form-group">
+			<input type="search" name="q" value="@ViewBag.q" class="form-control" placeholder="Search..." />
+		</div>
+
+		<div class="form-group">
+			@Html.DropDownList("typeId", null, "All Maps", new { @class = "form-control", onchange = "this.form.submit()" })
+		</div>
+
+	<div class="form-group" >
+		<select name="sort" class="form-control" onchange="this.form.submit()">
+			@SelectItem("Release", ViewBag.sort)
+			@SelectItem("Name", ViewBag.sort)
+			@SelectItem("Rating", ViewBag.sort)
+			@SelectItem("Downloads", ViewBag.sort)
+		</select>
+	</div>
+
+		<div class="form-group" onchange="this.form.submit()"> 
+			<select name="order" class="form-control" onchange="this.form.submit()">
+				@SelectItem("Ascending", ViewBag.order)
+				@SelectItem("Descending", ViewBag.order)
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<div class="btn-group btn-toggle">
+				<button type="submit" name="staffPick" value="" class="btn btn-default @(ViewBag.staffPick != true ? "active" : "")">All Variants</button>
+				<button type="submit" name="staffPick" value="True" class="btn btn-default @(ViewBag.staffPick == true ? "active" : "")">Staff Picks</button>
+			</div>
+		</div>
+
+		if (ViewBag.author != null)
+		{
+			<input type="hidden" value="@ViewBag.author" name="author" />
+		}
+	}
+</div>
+@if (Model.TotalItemCount > 0)
+{
+
+	<div class="row row-flex row-flex-wrap">
+		@foreach (var map in Model)
+		{
+			<div class="col-sm-6 col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2 class="panel-title">
+							<a href="@Url.Action("Details", new { slug = map.Slug })">
+								@if (map.IsStaffPick)
+								{
+									<i class="fa fa-certificate" title="Staff Pick"></i>
+								} @map.Title
+							</a>
+						</h2>
+					</div>
+
+					<div class="row" style="padding: 5px;">
+						<div class="col-xs-4">
+							<a class="thumbnail" href="@Url.Action("Details", new { slug = map.Slug })" style="margin: 0;">
+								<img src="~/Content/Images/Maps/@(map.GameMap.InternalName).jpg" style="width: 100%;" />
+							</a>
+						</div>
+						<div class="col-xs-8">
+							<div class="row">
+								<div class="col-xs-5" style="font-weight: bold;">Author</div>
+								<div class="col-xs-7">
+									<a href="@Url.Action("Index", "Profile", new { userName = map.Author.UserName })">@map.Author.UserName</a>
+								</div>
+								<div class="col-xs-5" style="font-weight: bold;">Release</div>
+								<div class="col-xs-7">@map.CreatedOn.ToString("MMM dd, yyy")</div>
+								<div class="col-xs-5" style="font-weight: bold;">Downloads</div>
+								<div class="col-xs-7">@map.File.DownloadCount</div>
+							</div>
+						</div>
+					</div>
+					<div style="font-style: italic; margin: 2px 10px 5px 10px;">@map.ShortDescription</div>
+				</div>
+			</div>
+		}
+	</div>
+
+	<aside>
+		@Html.Partial("~/Views/Shared/Ads/_Long.cshtml")
+	</aside>
+
+	<div class="text-center">
+		@Html.PagedListPager(Model, page => Url.Action("Index", new { page, q = ViewBag.q, typeId = ViewBag.selectedMapId, staffPick = ViewBag.staffPick, sort = ViewBag.sort, order = ViewBag.order, author = ViewBag.author }))
+	</div>
+
+}
+else
+{
+
+	<div class="text-center" style="font-style: italic">
+		There are 0 results with the given search criteria.
+	</div>
+
+}
+
+@helper SelectItem(string name, string value) {
+	<option value="@name.ToLower()" @(value == name.ToLower() ? "selected" : "")>@name</option>
+}
