@@ -7,8 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Disable complaints about async methods not using await.
+#pragma warning disable 1998
+
 namespace HaloShare.Security
 {
+
     public class ApplicationUserStore : IUserStore<Models.User, int>, IUserPasswordStore<Models.User, int>, IUserRoleStore<Models.User, int>
     {
         private static Dictionary<int, string[]> roles = new Dictionary<int, string[]>()
@@ -67,6 +71,7 @@ namespace HaloShare.Security
             throw new NotImplementedException();
         }
 
+       
         public async Task<IList<string>> GetRolesAsync(User user)
         {
             if (user.Id == 50) // User: Wombarly
@@ -120,3 +125,5 @@ namespace HaloShare.Security
         }
     }
 }
+
+#pragma warning restore 1998
