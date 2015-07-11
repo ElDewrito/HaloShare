@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using HaloShare.Core;
+using System.Data.Entity;
+using HaloShare.Models;
 
 namespace HaloShare
 {
@@ -20,6 +22,8 @@ namespace HaloShare
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.SetInitializer<Models.ApplicationDbContext>(null);
 
             // Initialize our super advanced configuration system.
             Configuration.Initialize(HostingEnvironment.MapPath("~/config.json"));
