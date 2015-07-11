@@ -38,7 +38,7 @@ namespace HaloShare.Security
 
         public async Task CreateAsync(User user)
         {
-            user.UserName = user.ForumDisplayName.Length > 15 ? user.ForumDisplayName.Substring(0, 15) : user.ForumDisplayName;
+            user.UserName = user.ForumName.Length > 15 ? user.ForumName.Substring(0, 15) : user.ForumName;
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
