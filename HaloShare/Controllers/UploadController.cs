@@ -32,6 +32,8 @@ namespace HaloShare.Controllers
         {
             if (ModelState.IsValid)
             {
+                var currentUser = UserManager.FindById(User.Identity.GetUserId<int>());
+
                 Models.GameTypeVariant variant = new Models.GameTypeVariant();
                 variant.Title = model.Title.Replace("\0", "");
                 variant.ShortDescription = model.Description;
@@ -95,7 +97,7 @@ namespace HaloShare.Controllers
                         variant.GameTypeId = type.Id;
 
                         variantItem.VariantName = model.Title;
-                        variantItem.VariantAuthor = User.Identity.GetUserName();
+                        //variantItem.VariantAuthor = currentUser.UploaderName;
                         variantItem.VariantDescription = variant.ShortDescription;
                         variantItem.Save();
 
@@ -131,6 +133,8 @@ namespace HaloShare.Controllers
         {
             if (ModelState.IsValid)
             {
+                var currentUser = UserManager.FindById(User.Identity.GetUserId<int>());
+
                 Models.GameMapVariant variant = new Models.GameMapVariant();
                 variant.Title = model.Title.Replace("\0", "");
                 variant.ShortDescription = model.Description;
@@ -196,7 +200,7 @@ namespace HaloShare.Controllers
                         variant.GameMapId = map.Id;
 
                         variantItem.VariantName = model.Title;
-                        variantItem.VariantAuthor = User.Identity.GetUserName();
+                        //variantItem.VariantAuthor = currentUser.UploaderName;
                         variantItem.VariantDescription = variant.ShortDescription;
                         variantItem.Save();
 

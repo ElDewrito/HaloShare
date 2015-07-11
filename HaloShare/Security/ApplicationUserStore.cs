@@ -38,7 +38,8 @@ namespace HaloShare.Security
 
         public async Task CreateAsync(User user)
         {
-            user.UserName = user.ForumName.Length > 15 ? user.ForumName.Substring(0, 15) : user.ForumName;
+            //user.UploaderName = user.UserName.Length > 15 ? user.UserName.Substring(0, 15) : user.UserName;
+            user.Joined = DateTime.UtcNow;
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -60,9 +61,9 @@ namespace HaloShare.Security
                 .FirstOrDefaultAsync();
         }
 
-        public Task<User> FindByNameAsync(string userName)
+        public Task<User> FindByNameAsync(string name)
         {
-            return _context.Users.Where(u => u.UserName == userName)
+            return _context.Users.Where(u => u.UserName == name)
                 .FirstOrDefaultAsync();
         }
 
@@ -77,8 +78,8 @@ namespace HaloShare.Security
             if (user.Id == 50) // User: Wombarly
                 return roles[4]; // Administrators
 
-            if (roles.ContainsKey(user.ForumGroupId))
-                return roles[user.ForumGroupId];
+            if (roles.ContainsKey(user.GroupId))
+                return roles[user.GroupId];
             else return roles[1]; // Guest
         }
 
@@ -90,8 +91,8 @@ namespace HaloShare.Security
         public async Task<bool> IsInRoleAsync(User user, string roleName)
         {
             string[] userRoles;
-            if (roles.ContainsKey(user.ForumGroupId))
-                userRoles = roles[user.ForumGroupId];
+            if (roles.ContainsKey(user.GroupId))
+                userRoles = roles[user.GroupId];
             else
                 userRoles = roles[1]; // Guest
 
@@ -113,14 +114,15 @@ namespace HaloShare.Security
 
         public async Task UpdateAsync(User user)
         {
-            var dbUser = _context.Users.Find(user.Id);
+            User dbUser = _context.Users.Find(user.Id);
 
-            dbUser.ForumDisplayName = user.ForumDisplayName;
-            dbUser.ForumGroupId = user.ForumGroupId;
-            dbUser.ForumJoined = user.ForumJoined;
-            dbUser.ForumName = user.ForumName;
+            dbUser.DisplayName = user.DisplayName;
+            dbUser.GroupId = user.GroupId;
+            dbUser.UserName = user.UserName;
             dbUser.ForumTitle = user.ForumTitle;
             dbUser.IsBanned = user.IsBanned;
+            //dbUser.UploaderName = user.UploaderName;
+
             await _context.SaveChangesAsync();
         }
     }

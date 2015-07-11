@@ -14,19 +14,22 @@ namespace HaloShare.Models
 {
     public class User : IUser<int>
     { 
-        /// <summary>
-        /// Display Name used for HaloShare and uploaded files.
-        /// </summary>
-        [StringLength(15, MinimumLength = 3)]
-        public string UserName { get; set; }
-
- 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [JsonProperty("member_id")]
         public int Id { get; set; }
 
         [JsonProperty("name")]
-        public string ForumName { get; set; }
+        public string UserName { get; set; }
+
+        [JsonProperty("members_display_name")]
+        public string DisplayName { get; set; }
+
+        [JsonProperty("member_group_id")]
+        public int GroupId { get; set; }
+
+        [JsonProperty("member_banned")]
+        [JsonConverter(typeof(Core.BoolJsonConverter))]
+        public bool IsBanned { get; set; }
 
         [JsonProperty("title")]
         public string ForumTitle { get; set; }
@@ -34,16 +37,12 @@ namespace HaloShare.Models
         [JsonProperty("joined")]
         public string ForumJoined { get; set; }
 
-        [JsonProperty("member_group_id")]
-        public int ForumGroupId { get; set; }
+        public DateTime Joined { get; set; }
 
-        [JsonProperty("members_display_name")]
-        public string ForumDisplayName { get; set; }
-
-        [JsonProperty("member_banned")]
-        [JsonConverter(typeof(Core.BoolJsonConverter))]
-        public bool IsBanned { get; set; }
-
+        //[Display(Name = "Uploader Name")]
+        //[StringLength(15, MinimumLength = 3)]
+        //[RegularExpression("[a-zA-Z0-9 ]")]
+        //public string UploaderName { get; set; }
 
 
         public virtual ICollection<GameMapVariant> GameMapVariants { get; set; }

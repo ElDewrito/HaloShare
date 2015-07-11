@@ -86,7 +86,7 @@
 							<div class="row">
 								<div class="col-xs-5" style="font-weight: bold;">Author</div>
 								<div class="col-xs-7">
-									<a href="@Url.Action("Index", "Profile", new { userName = map.Author.UserName })">@map.Author.UserName</a>
+									<a href="@Url.Action("Index", "Profile", new { userName = map.Author.UserName })">@map.Author.DisplayName</a>
 								</div>
 								<div class="col-xs-5" style="font-weight: bold;">Release</div>
 								<div class="col-xs-7">@map.CreatedOn.ToString("MMM dd, yyy")</div>

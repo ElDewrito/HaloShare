@@ -245,10 +245,13 @@
     <Compile Include="Migrations\201507100951573_Changes.Designer.cs">
       <DependentUpon>201507100951573_Changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507111451588_Changes1.cs" />
+    <Compile Include="Migrations\201507111451588_Changes1.Designer.cs">
+      <DependentUpon>201507111451588_Changes1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileDownload.cs" />
     <Compile Include="Models\GameMap.cs" />
@@ -560,6 +563,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507100951573_Changes.resx">
       <DependentUpon>201507100951573_Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507111451588_Changes1.resx">
+      <DependentUpon>201507111451588_Changes1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

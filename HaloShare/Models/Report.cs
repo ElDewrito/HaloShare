@@ -11,7 +11,7 @@ namespace HaloShare.Models
     {
         [Key]
         public int Id { get; set; }
-        public int AuthorId {get;set;}
+        public int? AuthorId {get;set;}
 
         public string Description { get; set; }
         [Required]

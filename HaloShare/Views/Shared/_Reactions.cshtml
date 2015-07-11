@@ -13,7 +13,7 @@
 		<meta itemprop="dateCreated" content="@reaction.PostedOn.ToString("s", System.Globalization.CultureInfo.InvariantCulture)">
 		<div class="media-left hidden-xs">
 			<a class="thumbnail" href="@Url.Action("Index", "Profile", new { userName = reaction.Author.UserName })">
-				<img class=" media-object" style="max-width: 64px;" src="~/Content/Images/Avatar.jpg" alt="@reaction.Author.UserName's Avatar" />
+				<img class=" media-object" style="max-width: 64px;" src="~/Content/Images/Avatar.jpg" alt="@reaction.Author.DisplayName's Avatar" />
 			</a>
 		</div>
 		<div class="media-body">
@@ -21,7 +21,7 @@
 				<div class="panel-heading">
 					<h4 class="panel-title" style="display: inline;" itemscope itemtype="http://data-vocabulary.org/Person" itemprop="author">
 						<a href="@Url.Action("Index", "Profile", new { userName = reaction.Author.UserName })">
-							@reaction.Author.UserName
+							@reaction.Author.DisplayName
 						</a>
 
 						@if (reaction.IsDeleted)

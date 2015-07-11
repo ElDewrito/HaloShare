@@ -36,8 +36,8 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-			@if(!string.IsNullOrWhiteSpace(item.AuthorId)) {
-				@Html.ActionLink(item.Author.UserName, "Index", "Profile", new { userName = item.Author.UserName })
+			@if(item.AuthorId.HasValue) {
+				@Html.ActionLink(item.Author.DisplayName, "Index", "Profile", new { userName = item.Author.UserName })
 			} else {
 				<span style="font-style: italic;">N/A</span>
 			}

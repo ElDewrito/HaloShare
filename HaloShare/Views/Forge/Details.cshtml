@@ -15,7 +15,7 @@
 		{
 			<i class="fa fa-certificate" title="Staff Pick"></i>
 		}<span itemprop="name">@Model.Title</span>
-		<small>by <span itemprop="author">@Html.ActionLink(Model.Author.UserName, "Index", "Profile", new { userName = Model.Author.UserName }, null)</span></small>
+		<small>by <span itemprop="author">@Html.ActionLink(Model.Author.DisplayName, "Index", "Profile", new { userName = Model.Author.UserName }, null)</span></small>
 	</h1>
 
 	<div class="panel panel-default">

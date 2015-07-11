@@ -1,14 +1,14 @@
 ﻿@model HaloShare.ViewModels.Profile
 @{
-	ViewBag.Title = string.Format("{0}'s Profile", Model.UserName);
+    ViewBag.Title = string.Format("{0}'s Profile", Model.DisplayName);
 }
 <div itemscope itemtype="http://schema.org/Person">
-	<h1 class="page-header" itemprop="name">@Model.UserName</h1>
+	<h1 class="page-header" itemprop="name">@Model.DisplayName</h1>
 
 	<div class="row">
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img itemprop="image" src="~/Content/Images/Avatar.jpg" alt="@Model.UserName's Avatar Picture" />
+				<img itemprop="image" src="~/Content/Images/Avatar.jpg" alt="@Model.DisplayName's Avatar Picture" />
 			</div>
 		</div>
 		<div class="col-md-8">
