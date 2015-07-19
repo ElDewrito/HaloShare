@@ -59,12 +59,12 @@ var Rating = (function () {
 })();
 function dwnlNag(type) {
     localStorage.setItem("dwnlMethod", type);
-    $("#download-link").click();
+    //$("#download-link").click();
 }
 $("#download-link").on('click', function () {
     var dwnlMethod = localStorage.getItem("dwnlMethod");
     if (dwnlMethod == undefined) {
-        event.preventDefault();
+        //event.preventDefault();
         $("#modal-dwnlnag").modal({
             keyboard: true
         });
