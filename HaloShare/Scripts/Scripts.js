@@ -69,10 +69,11 @@ $("#download-link").on('click', function () {
             keyboard: true
         });
     }
-    else if (dwnlMethod == "blam") {
+    else {
+        $("#download-link").addClass("disabled");
+    } /* else if (dwnlMethod == "blam") {
         $("#download-link").attr("href", $("#download-link").data('blam'));
-    }
-    $("#download-link").addClass("disabled");
+    }*/
 });
 function Report(url) {
     var description = prompt("Please provide short a report description:");
