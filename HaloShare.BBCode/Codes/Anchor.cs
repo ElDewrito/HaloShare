@@ -12,7 +12,7 @@ namespace HaloShare.BBCode.Codes
     [ExportMetadata("Tag", "url")]
     public class Anchor : IBBCode
     {
-        private static string format = "<a href=\"{0}\" target=\"_blank\" rel=\"nofollow\">{1}</a>";
+        private static string format = "<a href=\"{0}\" target=\"{2}\" rel=\"nofollow\">{1}</a>";
 
         public string Parse(string token, string parameter, string value)
         {
@@ -22,7 +22,12 @@ namespace HaloShare.BBCode.Codes
             Uri uri;
             if(Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out uri))
             {
-                return string.Format(format, uri.ToString(), name);
+                if (!uri.IsAbsoluteUri || uri.Scheme.StartsWith("http"))
+                {
+                    string target = uri.IsAbsoluteUri ? "_blank" : "";
+
+                    return string.Format(format, uri.ToString(), name, target);
+                }
             } 
             return name;
         }
