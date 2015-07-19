@@ -16,9 +16,15 @@ namespace HaloShare.BBCode.Codes
 
         public string Parse(string token, string parameter, string value)
         {
-            return string.Format(format,
-                HttpUtility.UrlEncode(parameter != "" ? parameter : value), 
-                value != "" ? value : parameter);
+            string url = parameter != "" ? parameter : value;
+            string name = value != "" ? value : parameter;
+
+            Uri uri;
+            if(Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out uri))
+            {
+                return string.Format(format, uri.ToString(), name);
+            } 
+            return name;
         }
     }
 }
