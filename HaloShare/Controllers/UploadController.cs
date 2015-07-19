@@ -30,6 +30,7 @@ namespace HaloShare.Controllers
         [Route("gametype")]
         public ActionResult GameType(ViewModels.UploadViewModel model)
         {
+            Response.TrySkipIisCustomErrors = true;
             if (ModelState.IsValid)
             {
                 var currentUser = UserManager.FindById(User.Identity.GetUserId<int>());
@@ -131,6 +132,7 @@ namespace HaloShare.Controllers
         [Route("forge")]
         public ActionResult Forge(ViewModels.UploadViewModel model)
         {
+            Response.TrySkipIisCustomErrors = true;
             if (ModelState.IsValid)
             {
                 var currentUser = UserManager.FindById(User.Identity.GetUserId<int>());

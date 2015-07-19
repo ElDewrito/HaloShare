@@ -85,9 +85,9 @@ $("#download-link").on('click', () => {
         $("#modal-dwnlnag").modal({
             keyboard: true
         });
-    } else if (dwnlMethod == "blam") {
+    }/* else if (dwnlMethod == "blam") {
         $("#download-link").attr("href", $("#download-link").data('blam'));       
-    }
+    }*/
 
     $("#download-link").addClass("disabled");
 });

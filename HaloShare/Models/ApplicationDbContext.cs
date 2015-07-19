@@ -23,6 +23,7 @@ namespace HaloShare.Models
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Migrations.Configuration>());
         }
 
         public static ApplicationDbContext Create()

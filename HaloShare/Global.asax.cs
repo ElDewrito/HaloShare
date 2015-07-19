@@ -23,8 +23,6 @@ namespace HaloShare
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Database.SetInitializer<Models.ApplicationDbContext>(null);
-
             // Initialize our super advanced configuration system.
             Configuration.Initialize(HostingEnvironment.MapPath("~/config.json"));
         }
